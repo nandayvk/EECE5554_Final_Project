@@ -1,0 +1,10 @@
+<launch>
+<!--  <remap from="/camera_array/cam0/camera_info" to="/camera_array/left/camera_info"/>-->
+<!--  <remap from="/camera_array/cam1/camera_info" to="/camera_array/right/camera_info"/>-->
+<!--  <remap from="/camera_array/cam0/image_raw" to="/camera_array/left/image_rect"/>-->
+  <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
+    <arg name="stereo" value="true"/>
+    <arg name="localization" value="true"/>
+    <arg name="stereo_namespace" value="/camera_array"/>
+  </include>
+</launch>
