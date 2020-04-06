@@ -2,9 +2,44 @@
 <!--  <remap from="/camera_array/cam0/camera_info" to="/camera_array/left/camera_info"/>-->
 <!--  <remap from="/camera_array/cam1/camera_info" to="/camera_array/right/camera_info"/>-->
 <!--  <remap from="/camera_array/cam0/image_raw" to="/camera_array/left/image_rect"/>-->
+  <!--
+  Currently theres an issue with cam0 and cam1 camera info topics not be setup as a stereo camera infterface.
+  P(0, 3) or Tx should be negative [0,0,0,Tx,...] but it is zero in the right camera
+  -->
+<!--  <arg name="ns" default="camera_array"/>-->
+<!--  <arg name="first_camera_name" default="cam0" />-->
+<!--  <arg name="second_camera_name" default="cam1" />-->
+
+  <arg name="ns" default="kitti"/>
+  <arg name="first_camera_name" default="camera_color_left" />
+  <arg name="second_camera_name" default="camera_color_right" />
+  <arg name="image_name" default="image_raw"/>
+  <arg name="gps_topic"  default="/kitti/oxts/gps/fix" />
+
+  <param name="/use_sim_time" value="true"/>
+  <arg name="localization" default="true"/>
+
   <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
     <arg name="stereo" value="true"/>
-    <arg name="localization" value="true"/>
-    <arg name="stereo_namespace" value="/camera_array"/>
+    <arg name="localization" value="$(arg localization)"/>
+    <arg name="stereo_namespace" value="/$(arg ns)"/>
+
+<!--    <arg name="rtabmapviz"              value="false" />-->
+<!--    <arg name="rviz"                    value="true" />-->
+
+<!--    <arg name="frame_id" value="base_footprint"/>-->
+    <arg name="frame_id" value="base_link"/>
+
+    <arg name="left_image_topic" value="/$(arg ns)/$(arg first_camera_name)/$(arg image_name)"/>
+    <arg name="right_image_topic" value="/$(arg ns)/$(arg second_camera_name)/$(arg image_name)"/>
+    <arg name="left_camera_info_topic" value="/$(arg ns)/$(arg first_camera_name)/camera_info"/>
+    <arg name="right_camera_info_topic" value="/$(arg ns)/$(arg second_camera_name)/camera_info"/>
+
+    <arg name="gps_topic"                value="$(arg gps_topic)" />
+
+<!--    <arg name="visual_odometry" value="false"/>-->
+<!--    <arg name="odom_topic" value="/viso2_ros/odometry"/>-->
+
+    <arg name="approx_sync" value="true"/>
   </include>
 </launch>

@@ -1,0 +1,4 @@
+<launch>
+    <param name="/use_sim_time" value="true"/>
+    <node pkg="static_transform_mux" type="static_transform_mux" name="static_tf_mux" output="screen"/>
+</launch>
