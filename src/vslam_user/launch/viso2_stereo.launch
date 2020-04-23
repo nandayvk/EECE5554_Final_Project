@@ -12,9 +12,13 @@
     <param name="/use_sim_time" value="true"/>
 
     <node pkg="viso2_ros" type="stereo_odometer" output="screen" name="viso2_ros">
-        <param name="base_link_frame_id" value="base_link"/>
+        <param name="base_link_frame_id" value="base_footprint"/>
         <param name="ref_frame_change_method" value="1"/>
         <param name="approximate_sync" value="true"/>
+        
+<!--        <param name="max_features" value="50"/>-->
+<!--        <param name="bucket_width" value="10"/>-->
+<!--        <param name="bucket_height" value="10"/>-->
 
         <remap from="/stereo/left/image" to="/$(arg ns)/$(arg first_camera_name)/$(arg image_name)"/>
         <remap from="/stereo/right/image" to="/$(arg ns)/$(arg second_camera_name)/$(arg image_name)"/>

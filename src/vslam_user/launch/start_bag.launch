@@ -1,23 +1,29 @@
 <launch>
-    <arg name="singh" default="false"/>
+    <arg name="singh" default="true"/>
 
     <group if="$(arg singh)">
-        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/morning_stereo_rgb_ir_lidar_gps.bag" />
+<!--        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/morning_stereo_rgb_ir_lidar_gps.bag" />-->
+        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/final_100.bag" />
         <include file="$(find vslam_user)/launch/static_tf_mux.launch">
 
         </include>
-        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock" required="true">
-            <remap from="/camera_array/cam0/camera_info" to="/bad_cam0"/>
-            <remap from="/camera_array/cam1/camera_info" to="/bad_cam1"/>
+        <node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+          <rosparam param="mappings">
+            [{old: base_footprint, new: /base_link}]
+          </rosparam>
+        </node>
+        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock -l -r 0.3" required="true">
+<!--            <remap from="/camera_array/cam0/camera_info" to="/bad_cam0"/>-->
+<!--            <remap from="/camera_array/cam1/camera_info" to="/bad_cam1"/>-->
         </node>
         <include file="$(find vslam_user)/launch/stereo_undistort.launch">
 
         </include>
-        <node pkg="rosbag" type="record" name="recorder" output="screen"
-              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose
-                /vehicle/gps/fix /imu/imu
-               -o $(find vslam_user)/singh_data.bag">
-        </node>
+<!--        <node pkg="rosbag" type="record" name="recorder" output="screen"-->
+<!--              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose-->
+<!--                /vehicle/gps/fix /imu/imu-->
+<!--               -o $(find vslam_user)/singh_data.bag">-->
+<!--        </node>-->
     </group>
     <group unless="$(arg singh)">
         <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/kitti/kitti_2011_09_26_drive_0022_synced.bag" />
@@ -27,10 +33,10 @@
 <!--        <include file="$(find vslam_user)/launch/stereo_undistort.launch">-->
 
 <!--        </include>-->
-        <node pkg="rosbag" type="record" name="recorder" output="screen"
-              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose
-              /kitti/oxts/gps/fix /kitti/oxts/gps/vel /kitti/oxts/imu
-               -o $(find vslam_user)/kitti_data.bag">
-        </node>
+<!--        <node pkg="rosbag" type="record" name="recorder" output="screen"-->
+<!--              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose-->
+<!--              /kitti/oxts/gps/fix /kitti/oxts/gps/vel /kitti/oxts/imu-->
+<!--               -o $(find vslam_user)/kitti_data.bag">-->
+<!--        </node>-->
     </group>
 </launch>

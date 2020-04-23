@@ -31,6 +31,7 @@ def replace_camera_info_messages(bag, topic0, topic1, camera_info0, camera_info1
 def reformat_msg(msg, cam_idx):
     P = list(msg.P)
     D = list(msg.D)
+    K = list(msg.K)
     if cam_idx == 0:
         D_params = [-0.03116674,  0.50057031, -7.69105705, 41.71286545]
         P_params = [1888.44515582, 1888.40009491,  613.18976514,  482.11894092]
@@ -43,9 +44,16 @@ def reformat_msg(msg, cam_idx):
     P[5] = P_params[1]
     P[2] = P_params[2]
     P[6] = P_params[3]
+    K[0] = P_params[0]
+    K[4] = P_params[1]
+    K[2] = P_params[2]
+    K[5] = P_params[3]
     msg.D = tuple(D)
     msg.P = tuple(P)
+    msg.K = tuple(K)
     msg.distortion_model = "equidistant"
+    msg.height = 1024
+    msg.width = 1224
     return msg
 
 

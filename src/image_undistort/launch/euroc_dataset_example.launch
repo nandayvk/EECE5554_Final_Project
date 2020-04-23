@@ -1,15 +1,12 @@
 <launch>
-<param name="/use_sim_time" value="true"/>
-<arg name="mav_name" default="camera_array" />
-<arg name="namespace" default="$(arg mav_name)" />
+
 <arg name="first_camera_name" default="cam0" />
 <arg name="second_camera_name" default="cam1" />
 <arg name="scale" default="1.0" />
 <arg name="process_every_nth_frame" default="1" />
+<arg name="stereo_params_camchain" default="/home/z/catkin_ws/src/mav_tools/mav_startup/parameters/mavs/ibis/camchain_p23023.yaml"/>
 
-  <arg name="stereo_params_camchain" default="$(find vslam_user)/cfg/params_camchain.yaml"/>
 
-<group ns="$(arg namespace)">
 
   <node name="stereo_undistort" pkg="image_undistort" type="stereo_undistort_node">
     <param name="input_camera_info_from_ros_params" value = "true"/>
@@ -17,17 +14,12 @@
     <param name="second_camera_namespace" value="$(arg second_camera_name)"/>
     <param name="scale" value="$(arg scale)"/>
     <param name="process_every_nth_frame" value="$(arg process_every_nth_frame)"/>
-
-    <param name="input_camera_info_from_ros_params" value = "false"/>
-<!--    <rosparam file="$(arg stereo_params_camchain)"/>-->
+    
+    <rosparam file="$(arg stereo_params_camchain)"/>
 
     <remap from="raw/first/image" to="$(arg first_camera_name)/image_raw"/>
     <remap from="raw/second/image" to="$(arg second_camera_name)/image_raw"/>
-    <remap from="raw/first/camera_info" to="$(arg first_camera_name)/camera_info"/>
-    <remap from="raw/second/camera_info" to="$(arg second_camera_name)/camera_info"/>
-    <remap from="rect/first/image" to="$(arg first_camera_name)/image_rect"/>
-    <remap from="rect/second/image" to="$(arg second_camera_name)/image_rect"/>
   </node>
-</group>
+
 
 </launch>
