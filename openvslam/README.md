@@ -1,12 +1,12 @@
 # OpenVSLAM: A Versatile Visual SLAM Framework
 
-##Installation
+## Installation
 
-###Source Code
+### Source Code
 
 The source code can be viewed from this [GitHub repository](https://github.com/xdspacelab/openvslam).
 
-###Dependencies
+### Dependencies
 
 OpenVSLAM requires a C++11-compliant compiler. It relies on several open-source libraries as shown below.
 
@@ -93,16 +93,16 @@ Otherwise, please download, build and install Protobuf from source using the bel
 
 `source /path/to/package/Protobuf_install.sh`
 
-###Build Instructions
+### Build Instructions
 
 ```
 cd /path/to/openvslam
 source /path/to/package/building.sh
 ```
 
-##Execution
+## Execution
 
-###To run the KITTI dataset
+### To run the KITTI dataset
 
 ```
 cd /path/to/openvslam/build/
@@ -116,7 +116,7 @@ cd /path/to/openvslam/build/
 ./run_image_localization -v ./orb_vocab/orb_vocab.dbow2 -i ./kitti_2_bag/images/ -c ./kitti_2_bag/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
 ```
 
-###To run the Northeastern University dataset
+### To run the Northeastern University dataset
 
 ```
 cd /path/to/openvslam/build/
@@ -131,11 +131,11 @@ cd /path/to/openvslam/build/
 ./run_video_localization -v ./orb_vocab/orb_vocab.dbow2 -m ./neu_data_edited/output.mp4 -c ./neu_data_edited/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
 ```
 
-##Download Data
+## Download Data
 
-Download the zip file containing the data from [OpenVSLAM Data.zip]() and place the individual folders for NEU data and KITTI data in /openvslam/build/ directory of the package after building it.
+Download the zip file containing the data from [OpenVSLAM Data.zip](https://drive.google.com/file/d/1lH1wCRZSXyrt8wjAXuWWRakEQCIolC9r/view?usp=sharing) and place the individual folders for NEU data and KITTI data in /openvslam/build/ directory of the package after building it.
 
-###Note
+### Note
 
 Please see [**Installation**](https://openvslam.readthedocs.io/en/master/installation.html) chapter in the [documentation](https://openvslam.readthedocs.io/) if any issues are necountered with the above steps.
 
