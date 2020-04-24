@@ -1,17 +1,22 @@
 <launch>
-    <arg name="ns" default="camera_array"/>
-    <arg name="first_camera_name" default="cam0" />
-    <arg name="second_camera_name" default="cam1" />
-    <arg name="image_name" default="image_rect"/>
-    <arg name="gps_topic"  default="/vehicle/gps/fix" />
-    <arg name="imu_topic"                default="/imu/imu"/>
+    <arg name="neu" default="true"/>
 
-<!--    <arg name="ns" default="kitti"/>-->
-<!--    <arg name="first_camera_name" default="camera_color_left" />-->
-<!--    <arg name="second_camera_name" default="camera_color_right" />-->
-<!--    <arg name="image_name" default="image_raw"/>-->
-<!--    <arg name="gps_topic"  default="/kitti/oxts/gps/fix" />-->
-<!--    <arg name="imu_topic"  default="/kitti/oxts/imu"/>-->
+    <group if="$(arg neu)">
+        <arg name="ns" default="camera_array"/>
+        <arg name="first_camera_name" default="cam0" />
+        <arg name="second_camera_name" default="cam1" />
+        <arg name="image_name" default="image_rect"/>
+        <arg name="gps_topic"  default="/vehicle/gps/fix" />
+        <arg name="imu_topic"                default="/imu/imu"/>
+    </group>
+    <group unless="$(arg neu)">
+        <arg name="ns" default="kitti"/>
+        <arg name="first_camera_name" default="camera_color_left" />
+        <arg name="second_camera_name" default="camera_color_right" />
+        <arg name="image_name" default="image_raw"/>
+        <arg name="gps_topic"  default="/kitti/oxts/gps/fix" />
+        <arg name="imu_topic"  default="/kitti/oxts/imu"/>
+    </group>
 
 <!--    <include file="$(find vslam_user)/launch/viso2_stereo.launch">-->
 <!--        <arg name="ns"  value="$(arg ns)"/>-->

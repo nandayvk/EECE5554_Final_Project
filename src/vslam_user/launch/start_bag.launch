@@ -1,7 +1,7 @@
 <launch>
-    <arg name="singh" default="true"/>
+    <arg name="neu" default="false"/>
 
-    <group if="$(arg singh)">
+    <group if="$(arg neu)">
 <!--        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/morning_stereo_rgb_ir_lidar_gps.bag" />-->
         <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/final_100.bag" />
         <include file="$(find vslam_user)/launch/static_tf_mux.launch">
@@ -22,10 +22,10 @@
 <!--        <node pkg="rosbag" type="record" name="recorder" output="screen"-->
 <!--              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose-->
 <!--                /vehicle/gps/fix /imu/imu-->
-<!--               -o $(find vslam_user)/singh_data.bag">-->
+<!--               -o $(find vslam_user)/neu_data.bag">-->
 <!--        </node>-->
     </group>
-    <group unless="$(arg singh)">
+    <group unless="$(arg neu)">
         <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/kitti/kitti_2011_09_26_drive_0022_synced.bag" />
         <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock" required="true">
 
