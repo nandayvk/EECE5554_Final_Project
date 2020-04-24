@@ -5,7 +5,7 @@
 Download the kitti dataset [kitti_2011_09_26_drive_0022_synced.bag](https://drive.google.com/open?id=1TJcH-Aw9yD5G5J0doLqCpa9ca22gw0cI)
 and place it inside [vslam_user/resources](src/vslam_user/resources).
 
-Also, download the modified NEU dataset with corrected camera_info topics called [final_100.bag]()
+Also, download the modified NEU dataset with corrected camera_info topics called [final_100.bag](https://drive.google.com/open?id=1FOw9sHZXFzR8m16sh4c17T6liJyaFkjg)
 and place it inside [vslam_user/resources](src/vslam_user/resources).
 
 These will be the rosbags referenced when using launch files for RTAB-Map.
