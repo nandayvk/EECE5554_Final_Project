@@ -1,3 +1,5 @@
+*.bag
+
 #! ROS
 devel/
 logs/

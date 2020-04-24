@@ -1,7 +1,6 @@
 <launch>
-<!--  <arg name="ns" default="camera_array"/>-->
-<!--  <arg name="first_camera_name" default="cam0" />-->
-<!--  <arg name="second_camera_name" default="cam1" />-->
+    <arg name="neu" default="false"/>
+    <arg name="viso" default="false"/>
 
   <arg name="ns" default="kitti"/>
   <arg name="first_camera_name" default="camera_color_left" />
@@ -15,8 +14,8 @@
 
   <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
 <!--    Parameters for performing map initialization -->
-<!--    <arg name="args" value="&#45;&#45;delete_db_on_start" unless="$(arg localization)"/>-->
-      <arg name="args" value="--delete_db_on_start"/>
+    <arg name="args" value="--delete_db_on_start" unless="$(arg localization)"/>
+<!--      <arg name="args" value="&#45;&#45;delete_db_on_start"/>-->
 
     <arg name="stereo" value="true"/>
     <arg name="localization" value="$(arg localization)"/>
@@ -25,8 +24,8 @@
 <!--    <arg name="rtabmapviz"              value="false" />-->
 <!--    <arg name="rviz"                    value="true" />-->
 
-    <arg name="frame_id" value="base_footprint"/>
-<!--    <arg name="frame_id" value="base_link"/>-->
+    <arg name="frame_id" value="base_footprint" if="$(arg neu)"/>
+    <arg name="frame_id" value="base_link" unless="$(arg neu)"/>
 
     <arg name="left_image_topic" value="/$(arg ns)/$(arg first_camera_name)/$(arg image_name)"/>
     <arg name="right_image_topic" value="/$(arg ns)/$(arg second_camera_name)/$(arg image_name)"/>
@@ -44,6 +43,6 @@
 <!--    <arg name="subscribe_scan_cloud" value="true" />-->
 <!--      <arg name="scan_cloud_topic" value="/$(arg ns)/velo/pointcloud"/>-->
 <!--      <arg name="scan_cloud_max_points"   value="0"/>-->
-      <arg name="cfg" value="/media/bmchale/BMcHale_SSD/home/git/neu/eece5554_finalproject/src/vslam_user/cfg/rtabmap.ini"/>
+      <arg name="cfg" value="$(find vslam_user)/cfg/rtabmap.ini" if="$(arg neu)"/>
   </include>
 </launch>

@@ -1,30 +1,33 @@
 <launch>
+<!--    Flag for switching between NEU and KITTI dataset-->
     <arg name="neu" default="true"/>
+    <arg name="viso" default="false" />
 
-    <group if="$(arg neu)">
-        <arg name="ns" default="camera_array"/>
-        <arg name="first_camera_name" default="cam0" />
-        <arg name="second_camera_name" default="cam1" />
-        <arg name="image_name" default="image_rect"/>
-        <arg name="gps_topic"  default="/vehicle/gps/fix" />
-        <arg name="imu_topic"                default="/imu/imu"/>
-    </group>
-    <group unless="$(arg neu)">
-        <arg name="ns" default="kitti"/>
-        <arg name="first_camera_name" default="camera_color_left" />
-        <arg name="second_camera_name" default="camera_color_right" />
-        <arg name="image_name" default="image_raw"/>
-        <arg name="gps_topic"  default="/kitti/oxts/gps/fix" />
-        <arg name="imu_topic"  default="/kitti/oxts/imu"/>
-    </group>
+<!--    Parameters for neu dataset-->
+    <arg name="ns" default="camera_array" if="$(arg neu)"/>
+    <arg name="first_camera_name" default="cam0" if="$(arg neu)"/>
+    <arg name="second_camera_name" default="cam1" if="$(arg neu)"/>
+    <arg name="image_name" default="image_rect" if="$(arg neu)"/>
+    <arg name="gps_topic"  default="/vehicle/gps/fix" if="$(arg neu)"/>
+    <arg name="imu_topic"                default="/imu/imu" if="$(arg neu)"/>
 
-<!--    <include file="$(find vslam_user)/launch/viso2_stereo.launch">-->
-<!--        <arg name="ns"  value="$(arg ns)"/>-->
-<!--        <arg name="first_camera_name" value="$(arg first_camera_name)"/>-->
-<!--        <arg name="second_camera_name" value="$(arg second_camera_name)"/>-->
-<!--        <arg name="image_name" value="$(arg image_name)"/>-->
-<!--    </include>-->
+<!--    Parameters for KITTI dataset-->
+    <arg name="ns" default="kitti" unless="$(arg neu)"/>
+    <arg name="first_camera_name" default="camera_color_left" unless="$(arg neu)"/>
+    <arg name="second_camera_name" default="camera_color_right" unless="$(arg neu)"/>
+    <arg name="image_name" default="image_raw" unless="$(arg neu)"/>
+    <arg name="gps_topic"  default="/kitti/oxts/gps/fix"  unless="$(arg neu)"/>
+    <arg name="imu_topic"  default="/kitti/oxts/imu" unless="$(arg neu)"/>
+
+    <include file="$(find vslam_user)/launch/viso2_stereo.launch" if="$(arg viso)">
+        <arg name="ns"  value="$(arg ns)"/>
+        <arg name="first_camera_name" value="$(arg first_camera_name)"/>
+        <arg name="second_camera_name" value="$(arg second_camera_name)"/>
+        <arg name="image_name" value="$(arg image_name)"/>
+    </include>
     <include file="$(find vslam_user)/launch/rtab.launch">
+        <arg name="neu" value="$(arg neu)"/>
+        <arg name="viso" value="$(arg viso)"/>
         <arg name="ns"  value="$(arg ns)"/>
         <arg name="first_camera_name" value="$(arg first_camera_name)"/>
         <arg name="second_camera_name" value="$(arg second_camera_name)"/>

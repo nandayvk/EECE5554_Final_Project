@@ -19,7 +19,6 @@
     <param name="process_every_nth_frame" value="$(arg process_every_nth_frame)"/>
 
     <param name="input_camera_info_from_ros_params" value = "false"/>
-<!--    <rosparam file="$(arg stereo_params_camchain)"/>-->
 
     <remap from="raw/first/image" to="$(arg first_camera_name)/image_raw"/>
     <remap from="raw/second/image" to="$(arg second_camera_name)/image_raw"/>

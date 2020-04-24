@@ -1,29 +1,6 @@
 <launch>
-<!--    <include file="$(find stereo_image_proc)/launch/stereo_image_proc.launch">-->
-<!--        <arg name="manager" value="/camera_array"/>-->
-<!--        <arg name="left" value="/camera_array/cam0"/>-->
-<!--        <arg name="right" value="/camera_array/cam1"/>-->
-<!--    </include>-->
-
-<!--
-rosbag play final_100.bag -l /camera_array/cam0/camera_info:=/camera_array/left/camera_info /camera_array/cam1/camera_info:=/camera_array/right/camera_info /camera_array/cam0/image_raw:=/camera_array/left/image_raw /camera_array/cam1/image_raw:=/camera_array/right/image_raw
-rosbag play morning_stereo_rgb_ir_lidar_gps.bag -l /camera_array/cam0/camera_info:=/camera_array/left/camera_info /camera_array/cam1/camera_info:=/camera_array/right/camera_info /camera_array/cam0/image_raw:=/camera_array/left/image_raw /camera_array/cam1/image_raw:=/camera_array/right/image_raw
-rosrun image_view stereo_view stereo:=/camera_array image:=image_rect_color
-rosbag play morning_stereo_rgb_ir_lidar_gps.bag -l /camera_array/cam0/camera_info:=/camera_array/left/camera_info /camera_array/cam1/camera_info:=/camera_array/right/camera_info /camera_array/cam0/image_raw:=/camera_array/left/image_rect_color /camera_array/cam1/image_raw:=/camera_array/right/image_rect
--->
-<!--    <remap from="/camera_array/cam0/camera_info" to="/camera_array/left/camera_info"/>-->
-<!--    <remap from="/camera_array/cam1/camera_info" to="/camera_array/right/camera_info"/>-->
-<!--    <remap from="/camera_array/cam0/image_raw" to="/camera_array/left/image_raw"/>-->
-<!--    <remap from="/camera_array/cam1/image_raw" to="/camera_array/right/image_raw"/>-->
-
-<!--    <remap from="/camera_array/left/camera_info" to="/camera_array/cam0/camera_info"/>-->
-<!--    <remap from="/camera_array/right/camera_info" to="/camera_array/cam1/camera_info"/>-->
-<!--    <remap from="/camera_array/left/image_raw" to="/camera_array/cam0/image_raw"/>-->
-<!--    <remap from="/camera_array/right/image_raw" to="/camera_array/cam1/image_raw"/>-->
 	<param name="/use_sim_time" value="true"/>
     <group ns="/camera_array/">
-<!--		<node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" >-->
-<!--		</node>-->
 		 <node pkg="nodelet" type="nodelet" name="standalone_nodelet"  args="manager"/>
 		<node pkg="nodelet" type="nodelet" name="dispartity_stereo" args="load stereo_image_proc/disparity standalone_nodelet --no-bond">
 			<remap from="left/image_rect" to="cam0/image_rect"/>

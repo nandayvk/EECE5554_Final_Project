@@ -1,9 +1,13 @@
 <launch>
+<!--    Parameter for choosing to use NEU dataset or KITTI dataset-->
     <arg name="neu" default="false"/>
+<!--    Controls if rosbag is recorded of localized poses from vSLAM-->
+    <arg name="record" default="false"/>
 
     <group if="$(arg neu)">
-<!--        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/morning_stereo_rgb_ir_lidar_gps.bag" />-->
-        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/final_100.bag" />
+        <arg name="file" default="$(find vslam_user)/resources/final_100.bag" />
+
+<!--        Fixes /tf_static publishing issue with NEU dataset-->
         <include file="$(find vslam_user)/launch/static_tf_mux.launch">
 
         </include>
@@ -12,31 +16,28 @@
             [{old: base_footprint, new: /base_link}]
           </rosparam>
         </node>
-        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock -l -r 0.3" required="true">
-<!--            <remap from="/camera_array/cam0/camera_info" to="/bad_cam0"/>-->
-<!--            <remap from="/camera_array/cam1/camera_info" to="/bad_cam1"/>-->
+        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock -l -r 0.5" required="true">
+
         </node>
+<!--        Undistorts images -->
         <include file="$(find vslam_user)/launch/stereo_undistort.launch">
 
         </include>
-<!--        <node pkg="rosbag" type="record" name="recorder" output="screen"-->
-<!--              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose-->
-<!--                /vehicle/gps/fix /imu/imu-->
-<!--               -o $(find vslam_user)/neu_data.bag">-->
-<!--        </node>-->
+        <node pkg="rosbag" type="record" name="recorder" output="screen"
+              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose
+                /vehicle/gps/fix /imu/imu
+               -o $(find vslam_user)/neu_data.bag" if="$(arg record)">
+        </node>
     </group>
     <group unless="$(arg neu)">
-        <arg name="file" default="/media/bmchale/BMcHale_SSD/home/git/neu/bags/kitti/kitti_2011_09_26_drive_0022_synced.bag" />
+        <arg name="file" default="$(find vslam_user)/resources/kitti_2011_09_26_drive_0022_synced.bag" />
         <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock" required="true">
 
         </node>
-<!--        <include file="$(find vslam_user)/launch/stereo_undistort.launch">-->
-
-<!--        </include>-->
-<!--        <node pkg="rosbag" type="record" name="recorder" output="screen"-->
-<!--              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose-->
-<!--              /kitti/oxts/gps/fix /kitti/oxts/gps/vel /kitti/oxts/imu-->
-<!--               -o $(find vslam_user)/kitti_data.bag">-->
-<!--        </node>-->
+        <node pkg="rosbag" type="record" name="recorder" output="screen"
+              args="/rtabmap/localization_pose /rtabmap/odom /viso2_ros/odometry /viso2_ros/pose
+              /kitti/oxts/gps/fix /kitti/oxts/gps/vel /kitti/oxts/imu
+               -o $(find vslam_user)/kitti_data.bag" if="$(arg record)">
+        </node>
     </group>
 </launch>
