@@ -66,7 +66,7 @@ function plot_pose(msgs, figIdx)
     yPoints = cellfun(@(m) double(m.Pose.Pose.Position.Y),msgs);
     
     % Create rotation matrix
-    theta = 24; % to rotate 90 counterclockwise
+    theta = 24; % to rotate counterclockwise and align with vSLAM
     R = [cosd(theta) -sind(theta); sind(theta) cosd(theta)];
     % Rotate your point(s)
     point = [xPoints yPoints]'; % arbitrarily selected

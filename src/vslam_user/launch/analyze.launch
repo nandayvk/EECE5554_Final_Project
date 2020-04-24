@@ -3,6 +3,10 @@
     <arg name="neu" default="true"/>
     <arg name="viso" default="false" />
 
+<!--    Flag for enabling RTAB-map localization, when disabled only builds map and does not perform localization-->
+<!--    Should be enabled after one run with building map-->
+    <arg name="localization" default="false" />
+
 <!--    Parameters for neu dataset-->
     <arg name="ns" default="camera_array" if="$(arg neu)"/>
     <arg name="first_camera_name" default="cam0" if="$(arg neu)"/>

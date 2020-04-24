@@ -2,6 +2,8 @@
     <arg name="neu" default="false"/>
     <arg name="viso" default="false"/>
 
+    <arg name="localization" default="true"/>
+
   <arg name="ns" default="kitti"/>
   <arg name="first_camera_name" default="camera_color_left" />
   <arg name="second_camera_name" default="camera_color_right" />
@@ -10,7 +12,6 @@
   <arg name="imu_topic"                default="/kitti/oxts/imu"/>
 
   <param name="/use_sim_time" value="true"/>
-  <arg name="localization" default="true"/>
 
   <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
 <!--    Parameters for performing map initialization -->

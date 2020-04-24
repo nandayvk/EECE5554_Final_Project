@@ -239,6 +239,20 @@ void StereoUndistort::processAndSendImage(
 //    roi.width = image_out_ptr->image.size().width - offset_x;
 //    roi.height = image_out_ptr->image.size().height - offset_y;//image_out_ptr->image.size().height - (offset_y*2);
 //    image_out_ptr->image = image_out_ptr->image(roi);
+
+    // https://docs.opencv.org/3.4/d3/dc1/tutorial_basic_linear_transform.html used below
+    double alpha = 2.2; /*< Simple contrast control */
+    int beta = 50;       /*< Simple brightness control */
+
+    for( int y = 0; y < image_out_ptr->image.rows; y++ ) {
+        for( int x = 0; x < image_out_ptr->image.cols; x++ ) {
+            for( int c = 0; c < image_out_ptr->image.channels(); c++ ) {
+                image_out_ptr->image.at<cv::Vec3b>(y,x)[c] =
+                  cv::saturate_cast<uchar>( alpha*image_out_ptr->image.at<cv::Vec3b>(y,x)[c] + beta );
+            }
+        }
+    }
+
     cv::cvtColor(image_out_ptr->image, image_out_ptr->image, cv::COLOR_BGR2GRAY);
     image_out_ptr->encoding = "mono8";
 
@@ -283,6 +297,20 @@ void StereoUndistort::processAndSendImage(
 //    roi.width = image_out_ptr->image.size().width - offset_x;
 //    roi.height = image_out_ptr->image.size().height - offset_y;//image_out_ptr->image.size().height - (offset_y*2);
 //    image_out_ptr->image = image_out_ptr->image(roi);
+
+    // https://docs.opencv.org/3.4/d3/dc1/tutorial_basic_linear_transform.html used below
+    double alpha = 2.2; /*< Simple contrast control */
+    int beta = 50;       /*< Simple brightness control */
+
+    for( int y = 0; y < image_out_ptr->image.rows; y++ ) {
+        for( int x = 0; x < image_out_ptr->image.cols; x++ ) {
+            for( int c = 0; c < image_out_ptr->image.channels(); c++ ) {
+                image_out_ptr->image.at<cv::Vec3b>(y,x)[c] =
+                  cv::saturate_cast<uchar>( alpha*image_out_ptr->image.at<cv::Vec3b>(y,x)[c] + beta );
+            }
+        }
+    }
+
     cv::cvtColor(image_out_ptr->image, image_out_ptr->image, cv::COLOR_BGR2GRAY);
     image_out_ptr->encoding = "mono8";
 
