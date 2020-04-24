@@ -16,7 +16,7 @@
             [{old: base_footprint, new: /base_link}]
           </rosparam>
         </node>
-        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock -l -r 0.5" required="true">
+        <node pkg="rosbag" type="play" name="playback" args="$(arg file) --clock -r 0.5" required="true">
 
         </node>
 <!--        Undistorts images -->

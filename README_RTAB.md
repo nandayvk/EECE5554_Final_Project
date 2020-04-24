@@ -3,10 +3,10 @@
 ###Setup files
 
 Download the kitti dataset [kitti_2011_09_26_drive_0022_synced.bag](https://drive.google.com/open?id=1TJcH-Aw9yD5G5J0doLqCpa9ca22gw0cI)
-and place it inside [vslam_user/resources](src/vslam_user/resources).
+and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
 Also, download the modified NEU dataset with corrected camera_info topics called [final_100.bag](https://drive.google.com/open?id=1FOw9sHZXFzR8m16sh4c17T6liJyaFkjg)
-and place it inside [vslam_user/resources](src/vslam_user/resources).
+and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
 These will be the rosbags referenced when using launch files for RTAB-Map.
 
@@ -33,7 +33,13 @@ issues replaying tf frames from /tf_static in rosbag.
 
 ###Running
 
+RTAB-Map needs to first build a map by running without localization for one complete cycle of the data. This map will 
+then be used when running with localization in the second cycle. Follow the steps below in order, first building the map
+and playing the bag once, then localizing pose and playing the bag again.
 
+####Generate Map
+
+**NOTE**: Follow these steps first and then jump to Perform Localization section.
 
 #####Terminal 1: Start playing rosbag
 
@@ -45,11 +51,29 @@ or for NEU data
 
 #####Terminal 2: Run RTAB-Map On Live Data
 
-`roslaunch vslam_user analyze.launch neu:=false`
+`roslaunch vslam_user analyze.launch neu:=false localization:=false`
 
 or for NEU data
 
-`roslaunch vslam_user analyze.launch neu:=true`
+`roslaunch vslam_user analyze.launch neu:=true localization:=false`
+
+####Perform Localization
+
+#####Terminal 1: Start playing rosbag
+
+`roslaunch vslam_user start_bag.launch neu:=false`
+
+or for NEU data
+
+`roslaunch vslam_user start_bag.launch neu:=true`
+
+#####Terminal 2: Run RTAB-Map On Live Data
+
+`roslaunch vslam_user analyze.launch neu:=false localization:=true`
+
+or for NEU data
+
+`roslaunch vslam_user analyze.launch neu:=true localization:=true`
 
 ###Analyze
 
@@ -64,4 +88,4 @@ Could not get rtabmap to predict pose successfully on NEU dataset. KITTI dataset
 parameters. Modified and tested various combinations of parameters under the groups Vis, GFTT, and SURF.
 
 [**replace_camera_info.py**](src/vslam_user/src/replace_camera_info.py): python file to modify and correct original
-camera_info topics in NEU dataset.
+camera_info topics in NEU dataset. Uses updated camera intrinsics and extrinsics given to us.
