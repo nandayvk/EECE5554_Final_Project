@@ -11,11 +11,17 @@ The source code can be viewed from this [GitHub repository](https://github.com/x
 OpenVSLAM requires a C++11-compliant compiler. It relies on several open-source libraries as shown below.
 
 **Requirements for OpenVSLAM**
+
 [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) : version 3.3.0 or later.
+
 [g2o](https://github.com/RainerKuemmerle/g2o) : Please use the latest release. Tested on commit ID [9b41a4e](https://github.com/RainerKuemmerle/g2o/tree/9b41a4ea5ade8e1250b9c1b279f3a9c098811b5a).
+
 [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) : Required by g2o.
+
 [DBoW2](https://github.com/shinsumicco/DBoW2) : Please use the custom version of DBoW2 released in [https://github.com/shinsumicco/DBoW2](https://github.com/shinsumicco/DBoW2).
+
 [yaml-cpp](https://github.com/jbeder/yaml-cpp) : version 0.6.0 or later.
+
 [OpenCV](https://opencv.org/) : version 3.3.1 or later.
 
 ### Prerequisites
@@ -50,35 +56,35 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
-Download and install Eigen from source.
+Install Eigen
 
 ```
 cd /path/to/openvslam/libraries/eigen/
 source /path/to/openvslam/Eigen.sh
 ```
 
-Download, build and install OpenCV from source.
+Build and install OpenCV
 
 ```
 cd /path/to/openvslam/libraries/open_cv/
 source /path/to/openvslam/OpenCV_install.sh
 ```
 
-Download, build and install the custom DBoW2 from source.
+Build and install the custom DBoW2
 
 ```
 cd /path/to/openvslam/libraries/DBoW2/
 source /path/to/openvslam/DBoW2_install.sh
 ```
 
-Download, build and install g2o.
+Build and install g2o
 
 ```
 cd /path/to/openvslam/libraries/g2o/
 source /path/to/openvslam/g2o_install.sh
 ```
 
-Download, build and install Pangolin from source.
+Build and install Pangolin
 
 ```
 cd /path/to/openvslam/libraries/pangolin/
@@ -87,7 +93,7 @@ source /path/to/openvslam/Pangolin_install.sh
 
 If you use Ubuntu 18.04 (or later), Protobuf 3.x can be installed via apt or brew.
 
-`apt install -y libprotobuf-dev protobuf-compiler`
+`sudo apt install -y libprotobuf-dev protobuf-compiler`
 
 Otherwise, please download, build and install Protobuf from source using the below command.
 
