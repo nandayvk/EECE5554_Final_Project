@@ -1,6 +1,3 @@
-wget -q https://github.com/opencv/opencv/archive/3.4.0.zip
-unzip -q 3.4.0.zip
-rm -rf 3.4.0.zip
 cd opencv-3.4.0
 mkdir -p build && cd build
 cmake \

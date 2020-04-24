@@ -23,66 +23,66 @@ OpenVSLAM requires a C++11-compliant compiler. It relies on several open-source 
 Install the dependencies via `apt`.
 
 ```
-apt update -y
-apt upgrade -y --no-install-recommends
+sudo apt update -y
+sudo apt upgrade -y --no-install-recommends
 # basic dependencies
-apt install -y build-essential pkg-config cmake git wget curl unzip
+sudo apt install -y build-essential pkg-config cmake git wget curl unzip
 # g2o dependencies
-apt install -y libatlas-base-dev libsuitesparse-dev
+sudo apt install -y libatlas-base-dev libsuitesparse-dev
 # OpenCV dependencies
-apt install -y libgtk-3-dev
-apt install -y ffmpeg
-apt install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavresample-dev
+sudo apt install -y libgtk-3-dev
+sudo apt install -y ffmpeg
+sudo apt install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavresample-dev
 # eigen dependencies
-apt install -y gfortran
+sudo apt install -y gfortran
 # other dependencies
-apt install -y libyaml-cpp-dev libgoogle-glog-dev libgflags-dev
+sudo apt install -y libyaml-cpp-dev libgoogle-glog-dev libgflags-dev
 
 # (if you plan on using PangolinViewer)
 # Pangolin dependencies
-apt install -y libglew-dev
+sudo apt install -y libglew-dev
 
 # (if you plan on using SocketViewer)
 # Protobuf dependencies
-apt install -y autogen autoconf libtool
+sudo apt install -y autogen autoconf libtool
 # Node.js
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-apt install -y nodejs
+sudo apt install -y nodejs
 ```
 
 Download and install Eigen from source.
 
 ```
-cd /path/to/working/dir
-source /path/to/package/Eigen.sh
+cd /path/to/openvslam/libraries/eigen/
+source /path/to/openvslam/Eigen.sh
 ```
 
 Download, build and install OpenCV from source.
 
 ```
-cd /path/to/working/dir
-source /path/to/package/OpenCV_install.sh
+cd /path/to/openvslam/libraries/open_cv/
+source /path/to/openvslam/OpenCV_install.sh
 ```
 
 Download, build and install the custom DBoW2 from source.
 
 ```
-cd /path/to/working/dir
-source /path/to/package/DBoW2_install.sh
+cd /path/to/openvslam/libraries/DBoW2/
+source /path/to/openvslam/DBoW2_install.sh
 ```
 
 Download, build and install g2o.
 
 ```
-cd /path/to/working/dir
-source /path/to/package/g2o_install.sh
+cd /path/to/openvslam/libraries/g2o/
+source /path/to/openvslam/g2o_install.sh
 ```
 
 Download, build and install Pangolin from source.
 
 ```
-cd /path/to/working/dir
-source /path/to/package/Pangolin_install.sh
+cd /path/to/openvslam/libraries/pangolin/
+source /path/to/openvslam/Pangolin_install.sh
 ```
 
 If you use Ubuntu 18.04 (or later), Protobuf 3.x can be installed via apt or brew.
@@ -91,14 +91,18 @@ If you use Ubuntu 18.04 (or later), Protobuf 3.x can be installed via apt or bre
 
 Otherwise, please download, build and install Protobuf from source using the below command.
 
-`source /path/to/package/Protobuf_install.sh`
+`source /path/to/openvslam/Protobuf_install.sh`
 
 ### Build Instructions
 
 ```
 cd /path/to/openvslam
-source /path/to/package/building.sh
+source building.sh
 ```
+
+## Download Data
+
+Download the zip file containing the data from [OpenVSLAM Data.zip](https://drive.google.com/file/d/1lH1wCRZSXyrt8wjAXuWWRakEQCIolC9r/view?usp=sharing) and place the individual folders for NEU data and KITTI data in /openvslam/build/ directory of the package created after after building it.
 
 ## Execution
 
@@ -108,12 +112,12 @@ source /path/to/package/building.sh
 cd /path/to/openvslam/build/
 
 # run tracking and mapping
-./run_image_slam -v ./orb_vocab/orb_vocab.dbow2 -i ./kitti_2_bag/images/ -c ./kitti_2_bag/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
+./run_image_slam -v ./orb_vocab/orb_vocab.dbow2 -i ./kitti_2_bag/images/ -c ./kitti_2_bag/config.yaml --frame-skip 1 --no-sleep --map-db map_kitti.msg
 # click the [Terminate] button to close the viewer
 # you can find map.msg in the current directory
 
 # run localization
-./run_image_localization -v ./orb_vocab/orb_vocab.dbow2 -i ./kitti_2_bag/images/ -c ./kitti_2_bag/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
+./run_image_localization -v ./orb_vocab/orb_vocab.dbow2 -i ./kitti_2_bag/images/ -c ./kitti_2_bag/config.yaml --frame-skip 1 --no-sleep --map-db map_kitti.msg
 ```
 
 ### To run the Northeastern University dataset
@@ -122,18 +126,15 @@ cd /path/to/openvslam/build/
 cd /path/to/openvslam/build/
 
 # run tracking and mapping
-./run_video_slam -v ./orb_vocab/orb_vocab.dbow2 -m ./neu_data_edited/output.mp4 -c ./neu_data_edited/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
+./run_video_slam -v ./orb_vocab/orb_vocab.dbow2 -m ./neu_data_edited/output.mp4 -c ./neu_data_edited/config.yaml --frame-skip 1 --no-sleep --map-db map_neu.msg
 # click the [Reset] button if track of features is lost to try to get new points
 # click the [Terminate] button to close the viewer
 # you can find map.msg in the current directory
 
 # run localization
-./run_video_localization -v ./orb_vocab/orb_vocab.dbow2 -m ./neu_data_edited/output.mp4 -c ./neu_data_edited/config.yaml --frame-skip 1 --no-sleep --map-db map.msg
+./run_video_localization -v ./orb_vocab/orb_vocab.dbow2 -m ./neu_data_edited/output.mp4 -c ./neu_data_edited/config.yaml --frame-skip 1 --no-sleep --map-db map_neu.msg
 ```
 
-## Download Data
-
-Download the zip file containing the data from [OpenVSLAM Data.zip](https://drive.google.com/file/d/1lH1wCRZSXyrt8wjAXuWWRakEQCIolC9r/view?usp=sharing) and place the individual folders for NEU data and KITTI data in /openvslam/build/ directory of the package after building it.
 
 ### Note
 

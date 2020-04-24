@@ -1,4 +1,3 @@
-git clone https://github.com/shinsumicco/DBoW2.git
 cd DBoW2
 mkdir build && cd build
 cmake \
