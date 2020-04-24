@@ -23,7 +23,7 @@
     <arg name="gps_topic"  default="/kitti/oxts/gps/fix"  unless="$(arg neu)"/>
     <arg name="imu_topic"  default="/kitti/oxts/imu" unless="$(arg neu)"/>
 
-    <include file="$(find vslam_user)/launch/viso2_stereo.launch" if="$(arg viso)">
+    <include file="$(find vslam_user)/launch/viso2_stereo.launch">
         <arg name="ns"  value="$(arg ns)"/>
         <arg name="first_camera_name" value="$(arg first_camera_name)"/>
         <arg name="second_camera_name" value="$(arg second_camera_name)"/>
