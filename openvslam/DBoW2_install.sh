@@ -1,4 +1,3 @@
-cd DBoW2
 mkdir build && cd build
 cmake \
     -DCMAKE_BUILD_TYPE=Release \

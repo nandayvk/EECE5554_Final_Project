@@ -87,7 +87,7 @@ source /path/to/openvslam/g2o_install.sh
 Build and install Pangolin
 
 ```
-cd /path/to/openvslam/libraries/pangolin/
+cd /path/to/openvslam/libraries/Pangolin/
 source /path/to/openvslam/Pangolin_install.sh
 ```
 
