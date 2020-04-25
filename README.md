@@ -33,9 +33,11 @@ to run them are below in their respective sections.
          * [Launch Files](#launch-files)
          * [Extra Information](#extra-information)
       * [MATLAB](#matlab)
+         * [Downloading](#downloading)
+         * [Running](#running-1)
       * [Package Comparison](#package-comparison)
 
-<!-- Added by: bmchale, at: Sat Apr 25 01:54:08 EDT 2020 -->
+<!-- Added by: bmchale, at: Sat Apr 25 02:40:04 EDT 2020 -->
 
 <!--te-->
 
@@ -57,6 +59,14 @@ and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 Also, download the modified NEU dataset with corrected camera_info topics called [final_100.bag](https://drive.google.com/open?id=1FOw9sHZXFzR8m16sh4c17T6liJyaFkjg)
 and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
+```
+cd src/vslam_user/resources
+# Bag file for kitti dataset
+wget https://drive.google.com/open?id=1TJcH-Aw9yD5G5J0doLqCpa9ca22gw0cI
+# Bag file for final_100.bag (NEU dataset)
+wget https://drive.google.com/open?id=1FOw9sHZXFzR8m16sh4c17T6liJyaFkjg
+```
+
 These will be the rosbags referenced when using launch files for RTAB-Map.
 
 ## RTAB-Map
@@ -76,17 +86,22 @@ issues replaying tf frames from /tf_static in rosbag.
 
 ### Installation
 
-`sudo apt install libnlopt-dev` (Needed for image_undistort)
+```
+# First line needed for image_undistort
+sudo apt install libnlopt-dev 
+sudo apt-get install ros-melodic-rtabmap-ros
+```
 
-`sudo apt-get install ros-melodic-rtabmap-ros`
 
 ### Building
 
 Build the workspace with catkin at the root of the repository.
 
-`cd /path/to/eece5554_finalproject`
+```
+cd /path/to/eece5554_finalproject
+catkin_make
+```
 
-`catkin_make`
 
 ### Running
 
