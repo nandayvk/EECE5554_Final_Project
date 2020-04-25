@@ -1,7 +1,7 @@
 <launch>
 <!--    Flag for switching between NEU and KITTI dataset-->
     <arg name="neu" default="true"/>
-    <arg name="viso" default="false" />
+    <arg name="use_viso" default="false" />
 
 <!--    Flag for enabling RTAB-map localization, when disabled only builds map and does not perform localization-->
 <!--    Should be enabled after one run with building map-->
@@ -23,7 +23,9 @@
     <arg name="gps_topic"  default="/kitti/oxts/gps/fix"  unless="$(arg neu)"/>
     <arg name="imu_topic"  default="/kitti/oxts/imu" unless="$(arg neu)"/>
 
+<!--    Launch viso2 odometry node always but isn't used by rtabmap unless use_viso is true-->
     <include file="$(find vslam_user)/launch/viso2_stereo.launch">
+        <arg name="neu" value="$(arg neu)"/>
         <arg name="ns"  value="$(arg ns)"/>
         <arg name="first_camera_name" value="$(arg first_camera_name)"/>
         <arg name="second_camera_name" value="$(arg second_camera_name)"/>
@@ -31,7 +33,8 @@
     </include>
     <include file="$(find vslam_user)/launch/rtab.launch">
         <arg name="neu" value="$(arg neu)"/>
-        <arg name="viso" value="$(arg viso)"/>
+        <arg name="use_viso" value="$(arg use_viso)"/>
+        <arg name="localization" value="$(arg localization)"/>
         <arg name="ns"  value="$(arg ns)"/>
         <arg name="first_camera_name" value="$(arg first_camera_name)"/>
         <arg name="second_camera_name" value="$(arg second_camera_name)"/>

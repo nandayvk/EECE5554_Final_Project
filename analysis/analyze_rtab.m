@@ -1,45 +1,26 @@
+%% analyze_rtab.m
+% Analysis for RTAB-Map results
+
 close all, clear all
 
-% %% Analysis on no imu data
-% bag = rosbag('kitti_data_noimu.bag');
-% 
-% gps = select(bag,'Topic','/kitti/oxts/gps/fix');
-% rtab_odom = select(bag,'Topic','/rtabmap/odom');
-% viso_odom = select(bag,'Topic','/viso2_ros/odometry');
-% rtab_pose = select(bag,'Topic','/rtabmap/localization_pose');
-% 
-% gps_msgs = readMessages(gps,'DataFormat','struct'); 
-% rtab_odom_msgs = readMessages(rtab_odom,'DataFormat','struct');
-% viso_odom_msgs = readMessages(viso_odom,'DataFormat','struct');
-% rtab_pose_msgs = readMessages(rtab_pose,'DataFormat','struct');
-% 
-% figObj =  findobj('type','figure');
-% figIdx = length(figObj) + 1;
-% 
-% plot_odom_pose(rtab_odom_msgs, figIdx);
-% plot_odom_pose(viso_odom_msgs, figIdx);
-% plot_pose(rtab_pose_msgs, figIdx);
-% legend("RTAB Odom", "Viso Odom", "RTAB-Map Pose")
-% title("Pose Localization from Visual SLAM without IMU")
-
 %% Analysis on data with imu
-bag = rosbag('kitti_data_imu.bag');
+bag = rosbag('kitti_data_2020-04-24-21-02-18.bag');
 
 gps = select(bag,'Topic','/kitti/oxts/gps/fix');
 rtab_odom = select(bag,'Topic','/rtabmap/odom');
-% viso_odom = select(bag,'Topic','/viso2_ros/odometry');
+viso_odom = select(bag,'Topic','/viso2_ros/odometry');
 rtab_pose = select(bag,'Topic','/rtabmap/localization_pose');
 
 gps_msgs = readMessages(gps,'DataFormat','struct'); 
 rtab_odom_msgs = readMessages(rtab_odom,'DataFormat','struct');
-% viso_odom_msgs = readMessages(viso_odom,'DataFormat','struct');
+viso_odom_msgs = readMessages(viso_odom,'DataFormat','struct');
 rtab_pose_msgs = readMessages(rtab_pose,'DataFormat','struct');
 
 figObj =  findobj('type','figure');
 figIdx = length(figObj) + 1;
 
 plot_odom_pose(rtab_odom_msgs, figIdx);
-% plot_odom_pose(viso_odom_msgs, figIdx);
+plot_odom_pose(viso_odom_msgs, figIdx);
 plot_pose(rtab_pose_msgs, figIdx);
 
 
@@ -47,7 +28,7 @@ plot_pose(rtab_pose_msgs, figIdx);
 % figObj =  findobj('type','figure');
 % figIdx = length(figObj) + 1;
 plot_gps(gps_msgs, figIdx);
-legend("RTAB Odom", "RTAB-Map Pose", "GPS Fix")
+legend("RTAB Odom", "Viso2", "RTAB-Map Pose", "GPS Fix")
 title("Pose Localization from Visual SLAM")
 
 %% Functions

@@ -286,6 +286,7 @@ void StereoUndistort::processAndSendImage(
     second_undistorter_ptr_->undistortImage(image_in_ptr->image,
                                             &(image_out_ptr->image));
 
+// TODO: Code below was written by Blake McHale to manipulate image and test on NEU dataset
 //    cv::rotate(image_out_ptr->image, image_out_ptr->image, cv::ROTATE_180); // TODO: Find out if rotating is needed BM
     cv::flip(image_out_ptr->image, image_out_ptr->image, 0);
 

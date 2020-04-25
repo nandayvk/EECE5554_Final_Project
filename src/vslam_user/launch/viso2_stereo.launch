@@ -1,4 +1,5 @@
 <launch>
+    <arg name="neu" default="false"/>
 <!--    <arg name="ns" default="camera_array"/>-->
 <!--    <arg name="first_camera_name" default="cam0" />-->
 <!--    <arg name="second_camera_name" default="cam1" />-->
@@ -12,7 +13,9 @@
     <param name="/use_sim_time" value="true"/>
 
     <node pkg="viso2_ros" type="stereo_odometer" output="screen" name="viso2_ros">
-        <param name="base_link_frame_id" value="base_footprint"/>
+        <param name="base_link_frame_id" value="base_footprint" if="$(arg neu)"/>
+        <param name="base_link_frame_id" value="base_link" unless="$(arg neu)"/>
+
         <param name="ref_frame_change_method" value="1"/>
         <param name="approximate_sync" value="true"/>
         

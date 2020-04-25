@@ -1,6 +1,7 @@
+<!-- Launch file for starting rtabmap -->
 <launch>
     <arg name="neu" default="false"/>
-    <arg name="viso" default="false"/>
+    <arg name="use_viso" default="false"/>
 
     <arg name="localization" default="true"/>
 
@@ -22,12 +23,15 @@
     <arg name="localization" value="$(arg localization)"/>
     <arg name="stereo_namespace" value="/$(arg ns)"/>
 
+<!--      Parameters for enabling rviz visualization for rtabmap-->
 <!--    <arg name="rtabmapviz"              value="false" />-->
 <!--    <arg name="rviz"                    value="true" />-->
 
+<!--      Tf frame arguments-->
     <arg name="frame_id" value="base_footprint" if="$(arg neu)"/>
     <arg name="frame_id" value="base_link" unless="$(arg neu)"/>
 
+<!--      Stereo image topics-->
     <arg name="left_image_topic" value="/$(arg ns)/$(arg first_camera_name)/$(arg image_name)"/>
     <arg name="right_image_topic" value="/$(arg ns)/$(arg second_camera_name)/$(arg image_name)"/>
     <arg name="left_camera_info_topic" value="/$(arg ns)/$(arg first_camera_name)/camera_info"/>
@@ -35,8 +39,10 @@
 
     <arg name="gps_topic"                value="$(arg gps_topic)" />
     <arg name="imu_topic"                value="$(arg imu_topic)"/>
-<!--    <arg name="visual_odometry" value="false"/>-->
-<!--    <arg name="odom_topic" value="/viso2_ros/odometry"/>-->
+
+<!--      Activates when using viso2-->
+    <arg name="visual_odometry" value="false" if="$(arg use_viso)"/>
+    <arg name="odom_topic" value="/viso2_ros/odometry" if="$(arg use_viso)"/>
 
     <arg name="approx_sync" value="true"/>
 
@@ -44,6 +50,8 @@
 <!--    <arg name="subscribe_scan_cloud" value="true" />-->
 <!--      <arg name="scan_cloud_topic" value="/$(arg ns)/velo/pointcloud"/>-->
 <!--      <arg name="scan_cloud_max_points"   value="0"/>-->
+
+<!--      Cfg containing parameters to change feature detection and mapping algorithm-->
       <arg name="cfg" value="$(find vslam_user)/cfg/rtabmap.ini" if="$(arg neu)"/>
   </include>
 </launch>
