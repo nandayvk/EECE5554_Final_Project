@@ -1,3 +1,4 @@
+<!--Author: Blake McHale-->
 <launch>
 <!--    Flag for switching between NEU and KITTI dataset-->
     <arg name="neu" default="true"/>

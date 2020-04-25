@@ -28,13 +28,14 @@ to run them are below in their respective sections.
             * [Perform Localization](#perform-localization)
                * [Terminal 1: Run RTAB-Map On Live Data](#terminal-1-run-rtab-map-on-live-data-1)
                * [Terminal 2: Start playing rosbag](#terminal-2-start-playing-rosbag-1)
-         * [Analyze](#analyze)
+         * [Analyze/Visualize](#analyzevisualize)
          * [Files Modified/Created](#files-modifiedcreated)
          * [Launch Files](#launch-files)
          * [Extra Information](#extra-information)
+      * [MATLAB](#matlab)
       * [Package Comparison](#package-comparison)
 
-<!-- Added by: bmchale, at: Fri Apr 24 22:25:10 EDT 2020 -->
+<!-- Added by: bmchale, at: Sat Apr 25 01:54:08 EDT 2020 -->
 
 <!--te-->
 
@@ -136,9 +137,9 @@ or for NEU data
 
 `roslaunch vslam_user start_bag.launch neu:=true`
 
-### Analyze
+### Analyze/Visualize
 
-Run matlab file `analyze_rtab.m` in analysis folder to visualize poses from collected data.
+Run matlab file `analyze_rtab.m` in [analysis](analysis) folder to visualize poses from collected data.
 
 
 ### Files Modified/Created
@@ -183,18 +184,23 @@ camera_info topics in NEU dataset. Uses updated camera intrinsics and extrinsics
 ## MATLAB
 
 
-1. First download kittiSLAM and SOFT folders separatly, and then download KITTI stereo images dataset at [here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0009/2011_09_26_drive_0009_sync.zip) for the first dataset 
-and [here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0022/2011_09_26_drive_0022_sync.zip) for the second one, which is the dataset we used for openvslam and RTAB map.
+1. First download kittiSLAM and SOFT folders separately, and then download KITTI stereo images dataset at 
+[here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0009/2011_09_26_drive_0009_sync.zip) 
+for the first dataset and [here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0022/2011_09_26_drive_0022_sync.zip) 
+for the second one, which is the dataset we used for openvslam and RTAB map.
 
-2. Unzip the zipfile under kittiSLAM and SOFT/data folders. For running kittiSLAM, run kittiSLAM.m in matlab. For running SOFT, run softSLAM.m under /SOFT/code/softSLAM.m
-(the original setting is to run with 2011_09_26_drive_0009 dataset. To change the dataset, change the file path at line 17,18 kittiSLAM.m and line 39,40 of softSLAM.m 
+2. Unzip the zipfile under kittiSLAM and SOFT/data folders. For running kittiSLAM, run kittiSLAM.m in matlab from 
+[analysis/kittiSLAM](analysis/kittiSLAM) folder. For running SOFT, run softSLAM.m under 
+[/SOFT/code/softSLAM.m](analysis/SOFT/code/softSLAM.m)(the original setting is to run with 2011_09_26_drive_0009
+dataset) from inside that folder. To change the dataset, change the file path at line 17,18 kittiSLAM.m and line 39,40 
+of softSLAM.m 
 
-(note: increase vo_params.feature.nms_tau at line 17 of softSLAM.m if computation pwer is a limitation).
+(note: increase vo_params.feature.nms_tau at line 17 of softSLAM.m if computation power is a limitation).
 
 ## Package Comparison
 
 Packages were compared with their generated poses. A plot can be generated comparing the SOFT Odometry results to 
-RTAB-Map's results by running `analyze_soft_rtab.m` in Matlab. Pose's were not compared for OpenVSLAM because there was
-an issue retrieving poses outside the Pangolin viewer.
+RTAB-Map's results by running `analyze_soft_rtab.m` in Matlab from the [analysis](analysis) folder. Pose's were not 
+compared for OpenVSLAM because there was an issue retrieving poses outside the Pangolin viewer.
 
 

@@ -1,3 +1,4 @@
+<!--Author: Blake McHale-->
 <launch>
 <!--    Parameter for choosing to use NEU dataset or KITTI dataset-->
     <arg name="neu" default="false"/>

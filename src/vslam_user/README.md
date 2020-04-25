@@ -1,3 +1,5 @@
+Author: Blake McHale
+
 # Dataset for ROS
 
 ### Setup files
