@@ -184,12 +184,21 @@ camera_info topics in NEU dataset. Uses updated camera intrinsics and extrinsics
 ## MATLAB
 
 
-1. First download kittiSLAM and SOFT folders separately, and then download KITTI stereo images dataset at 
+### Downloading
+First download kittiSLAM and SOFT folders separately, and then download KITTI stereo images dataset at 
 [here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0009/2011_09_26_drive_0009_sync.zip) 
 for the first dataset and [here](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_09_26_drive_0022/2011_09_26_drive_0022_sync.zip) 
 for the second one, which is the dataset we used for openvslam and RTAB map.
 
-2. Unzip the zipfile under kittiSLAM and SOFT/data folders. For running kittiSLAM, run kittiSLAM.m in matlab from 
+###Running
+Unzip the zipfile under kittiSLAM and SOFT/data folders.
+
+`unzip 2011_09_26_drive_0009_sync.zip -d /your_path/kittiSLAM`
+`unzip 2011_09_26_drive_0009_sync.zip -d /your_path/SOFT/data`
+`unzip 2011_09_26_drive_0022_sync.zip -d /your_path/kittiSLAM`
+`unzip 2011_09_26_drive_0022_sync.zip -d /your_path/SOFT/data`
+
+For running kittiSLAM, run kittiSLAM.m in matlab from 
 [analysis/kittiSLAM](analysis/kittiSLAM) folder. For running SOFT, run softSLAM.m under 
 [/SOFT/code/softSLAM.m](analysis/SOFT/code/softSLAM.m)(the original setting is to run with 2011_09_26_drive_0009
 dataset) from inside that folder. To change the dataset, change the file path at line 17,18 kittiSLAM.m and line 39,40 
