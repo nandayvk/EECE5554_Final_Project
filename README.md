@@ -33,9 +33,11 @@ to run them are below in their respective sections.
          * [Launch Files](#launch-files)
          * [Extra Information](#extra-information)
       * [MATLAB](#matlab)
+         * [Downloading](#downloading)
+         * [Running](#running-1)
       * [Package Comparison](#package-comparison)
 
-<!-- Added by: bmchale, at: Sat Apr 25 01:54:08 EDT 2020 -->
+<!-- Added by: bmchale, at: Sat Apr 25 02:40:04 EDT 2020 -->
 
 <!--te-->
 
