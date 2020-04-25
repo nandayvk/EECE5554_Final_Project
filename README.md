@@ -22,6 +22,10 @@ and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
 These will be the rosbags referenced when using launch files for RTAB-Map.
 
+# OpenVSLAM [Documentation](https://openvslam.readthedocs.io/en/master/index.html)[GitHub](https://github.com/xdspacelab/openvslam)
+
+The OpenVSLAM files are located in the [openvslam](https://gitlab.com/mchale.b/eece5554_finalproject/-/tree/master/openvslam) directory of this repository. The installation procedure along with other details are mentioned locally in tht directory.
+
 # RTAB-Map
 
 [**rtabmap_ros**](https://github.com/introlab/rtabmap_ros): Main package used for performing visual SLAM.
