@@ -31,12 +31,10 @@ to run them are below in their respective sections.
          * [Analyze](#analyze)
          * [Files Modified/Created](#files-modifiedcreated)
          * [Launch Files](#launch-files)
-               * [start_bag.launch arguments](#start_baglaunch-arguments)
-               * [analyze.launch arguments](#analyzelaunch-arguments)
          * [Extra Information](#extra-information)
       * [Package Comparison](#package-comparison)
 
-<!-- Added by: bmchale, at: Fri Apr 24 22:23:31 EDT 2020 -->
+<!-- Added by: bmchale, at: Fri Apr 24 22:25:10 EDT 2020 -->
 
 <!--te-->
 
@@ -155,13 +153,13 @@ Modified files in image_undistort to manipulate images after they are rectified.
 
 Two main launch files exist **start_bag.launch** and **analyze.launch**.
 
-##### start_bag.launch arguments
+**start_bag.launch arguments**
 
 neu - boolean flag that plays neu dataset when set to true and the KITTI dataset when set to false
 
 record - boolean flag that records a rosbag of all pose topics when set to true
 
-##### analyze.launch arguments
+**analyze.launch arguments**
 
 neu - boolean flag that reads from neu dataset when set to true and the KITTI dataset when set to false
 
