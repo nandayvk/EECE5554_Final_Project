@@ -56,6 +56,9 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 
+**Note**: If a shell script fails because of permission issues try running commands within the script yourself and specifically
+run `sudo make install` instead of `make install` at the end
+
 Install Eigen
 
 ```
