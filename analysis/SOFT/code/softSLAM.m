@@ -36,8 +36,8 @@ vo_params.estim.ransac_iters = 200;              % number of RANSAC iterations
 vo_params.estim.inlier_threshold = 2.0;          % fundamental matrix inlier threshold
 vo_params.estim.reweighing = 1;                  % lower border weights (more robust to calibration errors)
 %% 
-Scene1 = imageDatastore('..\data\2011_09_26\2011_09_26_drive_0022_sync\image_02\data\');
-Scene2 = imageDatastore('..\data\2011_09_26\2011_09_26_drive_0022_sync\image_03\data\');
+Scene1 = imageDatastore('..\data\2011_09_26\2011_09_26_drive_0009_sync\image_02\data\');
+Scene2 = imageDatastore('..\data\2011_09_26\2011_09_26_drive_0009_sync\image_03\data\');
 ImageSize=[375,1242];
 
 IntrinsicMatrix0 = [7.215377e+02 0.000000e+00 6.095593e+02; 0.000000e+00 7.215377e+02 1.728540e+02; 0.000000e+00 0.000000e+00 1.000000e+00];

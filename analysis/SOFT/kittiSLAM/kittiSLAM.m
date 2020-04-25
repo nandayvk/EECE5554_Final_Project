@@ -14,8 +14,8 @@ Tvec1 = [-3.395242e+02 2.199936e+00 2.729905e-03];
 
 stereoParams = stereoParameters(cameraParams0,cameraParams1,rotationMat01\rotationMat02,Tvec1-Tvec0);
 
-Scene1 = imageDatastore('..\2011_09_26\2011_09_26_drive_0009_sync\image_02\data\');
-Scene2 = imageDatastore('..\2011_09_26\2011_09_26_drive_0009_sync\image_03\data\');
+Scene1 = imageDatastore('\..\data\2011_09_26\2011_09_26_drive_0009_sync\image_02\data\');
+Scene2 = imageDatastore('\..\data\2011_09_26\2011_09_26_drive_0009_sync\image_03\data\');
 %%
  p = [0; 0; 0 ;1];
 for n = 1:size(Scene1.Files)-1
