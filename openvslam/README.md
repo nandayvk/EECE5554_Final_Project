@@ -115,6 +115,18 @@ Download the zip file containing the data from [OpenVSLAM Data.zip](https://driv
 
 ## Execution
 
+### Download orb_vocab before using datasets
+
+```
+cd /path/to/openvslam/build/
+
+FILE_ID="1wUPb328th8bUqhOk-i8xllt5mgRW4n84"
+curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${FILE_ID}" > /dev/null
+CODE="$(awk '/_warning_/ {print $NF}' /tmp/cookie)"
+curl -sLb /tmp/cookie "https://drive.google.com/uc?export=download&confirm=${CODE}&id=${FILE_ID}" -o orb_vocab.zip
+unzip orb_vocab.zip
+```
+
 ### To run the KITTI dataset
 
 ```
