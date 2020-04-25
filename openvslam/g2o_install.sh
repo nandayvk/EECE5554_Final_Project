@@ -12,4 +12,4 @@ cmake \
     -DG2O_USE_OPENMP=ON \
     ..
 make -j4
-make install
+sudo make install

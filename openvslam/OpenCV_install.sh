@@ -1,4 +1,3 @@
-cd opencv-3.4.0
 mkdir -p build && cd build
 cmake \
     -DCMAKE_BUILD_TYPE=Release \

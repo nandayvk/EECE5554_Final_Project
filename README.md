@@ -86,6 +86,8 @@ issues replaying tf frames from /tf_static in rosbag.
 
 ### Installation
 
+Make sure OpenCV and Eigen are built on your computer. If they are not they are built inside the openvslam instructions.
+
 ```
 # First line needed for image_undistort
 sudo apt install libnlopt-dev 

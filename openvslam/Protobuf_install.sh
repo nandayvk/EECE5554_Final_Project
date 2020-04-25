@@ -6,4 +6,4 @@ cd protobuf-3.6.1
     --prefix=/usr/local \
     --enable-static=no
 make -j4
-make install
+sudo make install
