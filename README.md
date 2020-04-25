@@ -40,7 +40,7 @@ to run them are below in their respective sections.
 
 ## OpenVSLAM
 
-[Documentation](https://openvslam.readthedocs.io/en/master/index.html)[GitHub](https://github.com/xdspacelab/openvslam)
+[Documentation](https://openvslam.readthedocs.io/en/master/index.html), [GitHub](https://github.com/xdspacelab/openvslam)
 
 The OpenVSLAM files are located in the [openvslam](openvslam) directory of this repository. The installation procedure 
 along with other details are mentioned locally in tht directory. You can find a README.md specific to openvslam at
