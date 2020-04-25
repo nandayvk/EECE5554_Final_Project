@@ -14,10 +14,10 @@ to run them are below in their respective sections.
 <!--ts-->
    * [EECE5554_FinalProject](#eece5554_finalproject)
       * [Table of Contents](#table-of-contents)
-   * [OpenVSLAM](#openvslam)
-   * [Dataset for ROS](#dataset-for-ros)
+      * [OpenVSLAM](#openvslam)
+      * [Dataset for ROS](#dataset-for-ros)
          * [Setup files](#setup-files)
-   * [RTAB-Map](#rtab-map)
+      * [RTAB-Map](#rtab-map)
          * [Additional Packages Used To Run NEU Dataset](#additional-packages-used-to-run-neu-dataset)
          * [Installation](#installation)
          * [Building](#building)
@@ -34,12 +34,13 @@ to run them are below in their respective sections.
                * [start_bag.launch arguments](#start_baglaunch-arguments)
                * [analyze.launch arguments](#analyzelaunch-arguments)
          * [Extra Information](#extra-information)
+      * [Package Comparison](#package-comparison)
 
-<!-- Added by: bmchale, at: Fri Apr 24 22:13:37 EDT 2020 -->
+<!-- Added by: bmchale, at: Fri Apr 24 22:23:31 EDT 2020 -->
 
 <!--te-->
 
-# OpenVSLAM
+## OpenVSLAM
 
 [Documentation](https://openvslam.readthedocs.io/en/master/index.html)[GitHub](https://github.com/xdspacelab/openvslam)
 
@@ -47,7 +48,7 @@ The OpenVSLAM files are located in the [openvslam](openvslam) directory of this 
 along with other details are mentioned locally in tht directory. You can find a README.md specific to openvslam at
 [openvslam/README.md](openvslam/README.md).
 
-# Dataset for ROS
+## Dataset for ROS
 
 ### Setup files
 
@@ -59,7 +60,7 @@ and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
 These will be the rosbags referenced when using launch files for RTAB-Map.
 
-# RTAB-Map
+## RTAB-Map
 
 [**rtabmap_ros**](https://github.com/introlab/rtabmap_ros): Main package used for performing visual SLAM.
 
@@ -181,7 +182,7 @@ parameters. Modified and tested various combinations of parameters under the gro
 [**replace_camera_info.py**](src/vslam_user/src/replace_camera_info.py): python file to modify and correct original
 camera_info topics in NEU dataset. Uses updated camera intrinsics and extrinsics given to us.
 
-# Package Comparison
+## Package Comparison
 
 Packages were compared with their generated poses. A plot can be generated comparing the SOFT Odometry results to 
 RTAB-Map's results by running `analyze_soft_rtab.m` in Matlab. Pose's were not compared for OpenVSLAM because there was
