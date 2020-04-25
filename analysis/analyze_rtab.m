@@ -4,7 +4,7 @@
 close all, clear all
 
 %% Analysis on data with imu
-bag = rosbag('kitti_data_2020-04-24-21-02-18.bag');
+bag = rosbag('kitti_data_imu.bag');
 
 gps = select(bag,'Topic','/kitti/oxts/gps/fix');
 rtab_odom = select(bag,'Topic','/rtabmap/odom');
