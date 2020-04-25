@@ -10,6 +10,43 @@ for results from package analysis. Please read notes at the bottom of each slide
 Packages used for this project were OpenVSLAM, RTAB-Map, and SOFT-Odometry. Descriptions regarding each package and how
 to run them are below in their respective sections.
 
+## Table of Contents
+<!--ts-->
+   * [EECE5554_FinalProject](#eece5554_finalproject)
+      * [Table of Contents](#table-of-contents)
+   * [OpenVSLAM](#openvslam)
+   * [Dataset for ROS](#dataset-for-ros)
+         * [Setup files](#setup-files)
+   * [RTAB-Map](#rtab-map)
+         * [Additional Packages Used To Run NEU Dataset](#additional-packages-used-to-run-neu-dataset)
+         * [Installation](#installation)
+         * [Building](#building)
+         * [Running](#running)
+            * [Generate Map](#generate-map)
+               * [Terminal 1: Run RTAB-Map On Live Data](#terminal-1-run-rtab-map-on-live-data)
+               * [Terminal 2: Start playing rosbag](#terminal-2-start-playing-rosbag)
+            * [Perform Localization](#perform-localization)
+               * [Terminal 1: Run RTAB-Map On Live Data](#terminal-1-run-rtab-map-on-live-data-1)
+               * [Terminal 2: Start playing rosbag](#terminal-2-start-playing-rosbag-1)
+         * [Analyze](#analyze)
+         * [Files Modified/Created](#files-modifiedcreated)
+         * [Launch Files](#launch-files)
+               * [start_bag.launch arguments](#start_baglaunch-arguments)
+               * [analyze.launch arguments](#analyzelaunch-arguments)
+         * [Extra Information](#extra-information)
+
+<!-- Added by: bmchale, at: Fri Apr 24 22:13:37 EDT 2020 -->
+
+<!--te-->
+
+# OpenVSLAM
+
+[Documentation](https://openvslam.readthedocs.io/en/master/index.html)[GitHub](https://github.com/xdspacelab/openvslam)
+
+The OpenVSLAM files are located in the [openvslam](openvslam) directory of this repository. The installation procedure 
+along with other details are mentioned locally in tht directory. You can find a README.md specific to openvslam at
+[openvslam/README.md](openvslam/README.md).
+
 # Dataset for ROS
 
 ### Setup files
@@ -21,10 +58,6 @@ Also, download the modified NEU dataset with corrected camera_info topics called
 and place it inside [src/vslam_user/resources](src/vslam_user/resources).
 
 These will be the rosbags referenced when using launch files for RTAB-Map.
-
-# OpenVSLAM [Documentation](https://openvslam.readthedocs.io/en/master/index.html)[GitHub](https://github.com/xdspacelab/openvslam)
-
-The OpenVSLAM files are located in the [openvslam](https://gitlab.com/mchale.b/eece5554_finalproject/-/tree/master/openvslam) directory of this repository. The installation procedure along with other details are mentioned locally in tht directory.
 
 # RTAB-Map
 
@@ -147,5 +180,11 @@ parameters. Modified and tested various combinations of parameters under the gro
 
 [**replace_camera_info.py**](src/vslam_user/src/replace_camera_info.py): python file to modify and correct original
 camera_info topics in NEU dataset. Uses updated camera intrinsics and extrinsics given to us.
+
+# Package Comparison
+
+Packages were compared with their generated poses. A plot can be generated comparing the SOFT Odometry results to 
+RTAB-Map's results by running `analyze_soft_rtab.m` in Matlab. Pose's were not compared for OpenVSLAM because there was
+an issue retrieving poses outside the Pangolin viewer.
 
 
