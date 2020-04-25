@@ -62,14 +62,14 @@ run `sudo make install` instead of `make install` at the end
 Install Eigen
 
 ```
-cd /path/to/openvslam/libraries/eigen/
+cd /path/to/openvslam/libraries/eigen/eigen-eigen-5a0156e40feb/
 source /path/to/openvslam/Eigen.sh
 ```
 
 Build and install OpenCV
 
 ```
-cd /path/to/openvslam/libraries/open_cv/
+cd /path/to/openvslam/libraries/open_cv/opencv-3.4.0/
 source /path/to/openvslam/OpenCV_install.sh
 ```
 
